@@ -5,4 +5,4 @@ const PageNotFoundPage = () => {
   )
 }
 
-export default PageNotFoundPage
+export default PageNotFoundPage   
