@@ -1,4 +1,6 @@
 import Link from "next/link";
+import style from "./event-item.module.css";
+import BtnPrimary from "../ui/button";
 
 const EventShow = ({ item }) => {
     const { id, title, description, location, date, image, isFeatured } = item;
@@ -10,20 +12,20 @@ const EventShow = ({ item }) => {
     const formattedAddress = location.replace(", ", "\n");
     const exploreLink = `/events/${id}`;
     return (
-        <li>
+        <li className={style.item}>
             <img src={`/${image}`} alt={title} />
-            <div>
+            <div className={style.content}>
                 <header>
                     <h2>{title}</h2>
                 </header>
-                <div>
+                <div className={style.data}>
                     <time>{formattedAddress}</time>
                 </div>
-                <div>
+                <div className={style.data}>
                     <address>{humandReadableDate}</address>
                 </div>
-                <div>
-                    <Link href={exploreLink}>Explore Event</Link>
+                <div className={style.actions}>
+                    <BtnPrimary link={exploreLink}>Explore Event</BtnPrimary>
                 </div>
             </div>
         </li>
