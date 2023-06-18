@@ -1,6 +1,8 @@
 import Link from "next/link";
 import style from "./event-item.module.css";
 import BtnPrimary from "../ui/button";
+import DateIcon from "../icons/date-icon";
+import AddressIcon from "../icons/address-icon";
 
 const EventShow = ({ item }) => {
     const { id, title, description, location, date, image, isFeatured } = item;
@@ -18,10 +20,12 @@ const EventShow = ({ item }) => {
                 <header>
                     <h2>{title}</h2>
                 </header>
-                <div className={style.data}>
+                <div className={style.date}>
+                    <DateIcon/>
                     <time>{formattedAddress}</time>
                 </div>
-                <div className={style.data}>
+                <div className={style.address}>
+                    <AddressIcon/>
                     <address>{humandReadableDate}</address>
                 </div>
                 <div className={style.actions}>
