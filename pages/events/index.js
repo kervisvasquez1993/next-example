@@ -1,10 +1,10 @@
 import React from "react";
 import EventList from "../../components/evenets/EventList";
 import EventsSearch from "../../components/evenets/EventsSearch";
-import { getFeaturedEvents } from "../../dummy-data";
+import { getFeaturedEvents, getAllEvents } from "../../dummy-data";
 import { useRouter } from "next/router";
 const EventsPage = () => {
-    const featuredEvents = getFeaturedEvents();
+    const featuredEvents = getAllEvents();
     const router = useRouter();
     const findEventsHandler = (year, month) => {
         router.push(`/events/${year}/${month}`);
