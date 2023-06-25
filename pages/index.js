@@ -1,25 +1,25 @@
-import Link from "next/link";
+// import fs from "fs";
 
-const Homepage = () => {
+const Homepage = ({ datos }) => {
     return (
         <>
-            <h1>Home Page</h1>
             <ul>
-                <li>
-                    <Link href="/portafolio">Portfolio</Link>
-                </li>
-                <li>
-                    <Link href="/about">About us</Link>
-                </li>
-                <li>
-                    <Link href="/clients">Clientes</Link>
-                </li>
-                <li>
-                    <Link href="/blog">Blog</Link>
-                </li>
+                {datos.map((dato) => (
+                    <li key={dato.id}>{dato.title}</li>
+                ))}{" "}
             </ul>
         </>
     );
+};
+export const getStaticProps = async () => {
+    // fetch data from an API
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const datos = await res.json();
+    return {
+        props: {
+            datos,
+        },
+    };
 };
 
 export default Homepage;
