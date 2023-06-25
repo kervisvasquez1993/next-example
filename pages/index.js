@@ -1,24 +1,37 @@
-// import fs from "fs";
+import Link from "next/link";
+import { usePost } from "../components/hooks/usePost";
 
 const Homepage = ({ datos }) => {
     return (
         <>
             <ul>
                 {datos.map((dato) => (
-                    <li key={dato.id}>{dato.title}</li>
-                ))}{" "}
+                    <Link href={`/${dato.id}`} key={dato.id}>
+                        <li>{dato.title}</li>
+                    </Link>
+                ))}
             </ul>
         </>
     );
 };
+export const getPosts = async () => {
+    try {
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const datos = await res.json();
+        return datos;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 export const getStaticProps = async () => {
-    // fetch data from an API
-    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const datos = await res.json();
+    const posts = await getPosts();
+
     return {
         props: {
-            datos,
+            datos: posts,
         },
+        revalidate: 10,
     };
 };
 
